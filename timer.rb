@@ -14,7 +14,13 @@ def display_time(t)
   t.strftime('%m-%d-%y %R')
 end
 
-File.open('timesheet.txt','a') do |f|
+def month
+  log_time.strftime('%m').to_i
+end
+
+filename = "timesheet-#{month}.txt"
+
+File.open(filename,'a') do |f|
   puts 'Start now?'
   prompt
 
