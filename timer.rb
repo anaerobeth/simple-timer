@@ -1,17 +1,30 @@
+def prompt
+  gets.chomp
+end
+
+def log_time
+  Time.now
+end
+
+def display_time(t)
+  t.strftime('%m-%d-%y %R')
+end
+
 File.open('timesheet.txt','a') do |f|
   puts 'Start now?'
-  gets.chomp
+  prompt
 
-  time_started = Time.now
-  puts "Started at #{time_started.strftime('%m-%d-%y %R')}"
+  time_started = log_time
+
+  puts "Started at #{display_time(time_started)}"
   puts 'Stop the timer?'
-  gets.chomp
+  prompt
 
-  time_ended = Time.now
+  time_ended = log_time
   minutes = (time_ended - time_started)/60
-  puts "Total time worked is #{minutes.round(2)} minutes."
+  puts "Total time worked is #{minutes.round(0)} minutes."
 
-  f.write "Logged #{minutes.round(1)} minutes from #{time_started.strftime('%m-%d-%y %R')} to #{time_ended.strftime('%m-%d-%y %R')}"
+  f.write "Logged #{minutes.round(0)} minutes from #{display_time(time_started)} to #{display_time(time_ended)}"
   f.write "\n"
 end
 
