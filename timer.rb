@@ -1,5 +1,9 @@
 def prompt
-  gets.chomp
+  if gets.chomp == 'n'
+    exit
+  else
+    return
+  end
 end
 
 def log_time
